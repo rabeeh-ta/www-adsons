@@ -1382,11 +1382,11 @@ h3 {
   .menu-open .nav-links { display: flex; }
   .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
   .nav-links a::after { display: none; }
-  .home-hero { min-height: 760px; height: 92svh; }
+  .home-hero { min-height: 0; height: auto; }
   .hero-content { padding-top: 170px; }
   .hero-content h1 { font-size: clamp(3.3rem, 12vw, 5.6rem); }
   .hero-copy { max-width: 550px; font-size: 1rem; }
-  .hero-proof { width: 100%; }
+  .hero-proof { position: relative; width: 100%; margin-top: 56px; }
   .section-heading, .intro-grid { display: block; }
   .section-heading .section-copy { grid-column: auto; }
   .section-heading { margin-bottom: 45px; }
@@ -1453,6 +1453,10 @@ h3 {
   .footer-nav { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; }
   .whatsapp-float { width: 54px; height: 54px; }
+}
+
+@media (max-width: 380px) {
+  .number-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
