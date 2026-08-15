@@ -34,6 +34,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# deployment builds
+/.netlify/
+/.output/
+
 /.openai/
 /dist/
 /.wrangler/
