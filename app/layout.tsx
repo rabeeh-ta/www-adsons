@@ -14,24 +14,30 @@ const body = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Adsons | Electronics Trading & Distribution",
+    default: "Adsons | International Cellphone Accessories Trading",
     template: "%s | Adsons",
   },
   description:
-    "Adsons connects dependable mobile and computer accessories with wholesale partners across Africa, Asia and North America.",
+    "Established in 2001, Adsons specializes in the import, export and wholesale distribution of cellphone accessories across international markets.",
   openGraph: {
-    title: "Adsons | Electronics Trading & Distribution",
-    description: "Connecting markets. Powering everyday technology.",
+    title: "Adsons | International Cellphone Accessories Trading",
+    description: "Connecting Businesses. Building Lasting Partnerships.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Adsons - Connecting Businesses. Building Lasting Partnerships." }],
   },
   twitter: {
-    card: "summary",
-    title: "Adsons | Electronics Trading & Distribution",
-    description: "Connecting markets. Powering everyday technology.",
+    card: "summary_large_image",
+    title: "Adsons | International Cellphone Accessories Trading",
+    description: "Connecting Businesses. Building Lasting Partnerships.",
+    images: ["/og.png"],
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [
+      { url: "/adsons-favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/adsons-favicon.ico", type: "image/x-icon", sizes: "256x256" },
+    ],
+    shortcut: "/adsons-favicon.ico",
+    apple: "/adsons-favicon.png",
   },
 };
 
@@ -41,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${display.variable} ${body.variable}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
         {children}
       </body>
     </html>

@@ -22,21 +22,21 @@ test("server-renders the Adsons homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Connecting markets\./);
-  assert.match(html, /Powering everyday technology\./);
-  assert.match(html, /20\+/);
-  assert.match(html, /Retail Network/);
-  assert.match(html, /WhatsApp/);
+  assert.match(html, /Connecting businesses\./i);
+  assert.match(html, /Building lasting partnerships\./i);
+  assert.match(html, /2001/);
+  assert.match(html, /ADSONS and DIGIT/);
+  assert.match(html, /consumer electronics accessories warehouse/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Starter Project/i);
 });
 
 test("server-renders every public route", async () => {
   const expected = [
-    ["/trading", /Trading &amp; Distribution/],
-    ["/categories", /Focused categories/],
-    ["/retail", /Three shops/],
-    ["/about", /Built over two decades/],
-    ["/contact", /Let’s discuss/],
+    ["/trading", /Reliable supply\. Enduring partnerships\./],
+    ["/categories", /Brands built around quality/],
+    ["/retail", /principles behind every partnership/i],
+    ["/about", /International trading experience since 2001/],
+    ["/contact", /build the next lasting partnership/i],
   ];
 
   for (const [pathname, heading] of expected) {

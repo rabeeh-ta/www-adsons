@@ -1,25 +1,25 @@
 # Adsons corporate website
 
-A responsive six-page website for Adsons, an electronics trading and retail business with more than 20 years of experience and three retail shops.
+A responsive six-page website for Adsons, an international cellphone accessories trading company established in 2001.
 
 This project is intentionally local-only. Do not deploy it to `chatgpt.site`.
 
 ## Pages
 
 - Home
-- Trading & Distribution
-- Product Categories
-- Retail Network
+- International Trading
+- Our Brands
+- Our Values
 - About Adsons
 - Contact
 
-## Content updates
+## Content source
 
-Shared business content and contact configuration are kept in `lib/site-data.ts`. Add the official international WhatsApp number to `siteConfig.whatsappNumber` before launch.
+Verified company content comes from `raw-data/info.pdf`. The official supplied logo is in `raw-data/adsons-logo.jpeg`; optimized website versions live under `public/images/`.
 
-The website deliberately presents only broad product categories and general subcategories. It does not expose individual products, brands, suppliers, pricing, stock or catalogues.
+Product and collection information has intentionally not been invented. The Brands page introduces only the confirmed proprietary brands, ADSONS and DIGIT, until approved portfolio content is supplied.
 
-See `docs/WEBSITE-PLAN.md` and `docs/OWNER-CONTENT-CHECKLIST.md` for the agreed strategy and owner review requirements.
+Shared business content and contact configuration are kept in `lib/site-data.ts`. Add the official WhatsApp number, email and phone before launch.
 
 ## Development
 

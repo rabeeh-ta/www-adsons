@@ -1,14 +1,16 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local VINEXT build serves optimized project assets directly */
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
-  categories,
+  brands,
+  markets,
   navigation,
-  regions,
   siteConfig,
   strengths,
-  whatsappHref,
+  values,
 } from "@/lib/site-data";
 
 type Page = "home" | "trading" | "categories" | "retail" | "about" | "contact";
@@ -22,41 +24,60 @@ const pagePath: Record<Page, string> = {
   contact: "/contact",
 };
 
-const pageHero: Record<Exclude<Page, "home">, { eyebrow: string; title: string; copy: string; image: string }> = {
+const pageHero: Record<Exclude<Page, "home">, { eyebrow: string; title: string; copy: string; image: string; alt: string }> = {
   trading: {
-    eyebrow: "Trading & Distribution",
-    title: "Connecting the right categories with the right markets.",
-    copy: "Adsons supports wholesale partners with market-aware electronics sourcing and a relationship-led approach to trade.",
-    image: "/images/trade.jpg",
+    eyebrow: "International Trading",
+    title: "Reliable supply. Enduring partnerships.",
+    copy: "Adsons connects trusted manufacturers with wholesalers, distributors, retailers and importers across international markets.",
+    image: "/images/warehouse.png",
+    alt: "Organized consumer electronics accessories warehouse",
   },
   categories: {
-    eyebrow: "Product Categories",
-    title: "Focused categories. Broader possibilities.",
-    copy: "A considered range of mobile and computer accessory categories—shared at the right level for serious trade conversations.",
+    eyebrow: "Our Proprietary Brands",
+    title: "Brands built around quality, performance and value.",
+    copy: "ADSONS and DIGIT are developed to meet the changing needs of the global cellphone accessories market.",
     image: "/images/technology.jpg",
+    alt: "Cellphone and computer accessories in a modern workspace",
   },
   retail: {
-    eyebrow: "Retail Network",
-    title: "Three shops. One direct view of the market.",
-    copy: "Our retail presence keeps Adsons close to customers, emerging demand and the everyday realities of selling technology.",
-    image: "/images/technology.jpg",
+    eyebrow: "Our Core Values",
+    title: "The principles behind every partnership.",
+    copy: "Professionalism, integrity and a customer-first approach guide how Adsons works across borders and over the long term.",
+    image: "/images/architecture.jpg",
+    alt: "Modern glass architecture reflecting an open sky",
   },
   about: {
     eyebrow: "About Adsons",
-    title: "Built over two decades. Moving with every market.",
-    copy: "A trading and retail business shaped by experience, relationships and a clear understanding of everyday technology.",
+    title: "International trading experience since 2001.",
+    copy: "From a trading business to a trusted international partner in the cellphone accessories industry.",
     image: "/images/architecture.jpg",
+    alt: "Modern glass architecture reflecting an open sky",
   },
   contact: {
-    eyebrow: "Contact",
-    title: "Let’s discuss what your market needs next.",
-    copy: "Tell us where you operate and which categories you are exploring. Our team will continue the conversation directly.",
-    image: "/images/trade.jpg",
+    eyebrow: "Start a Conversation",
+    title: "Let’s build the next lasting partnership.",
+    copy: "Introduce your business, market and requirements so the right Adsons conversation can begin.",
+    image: "/images/warehouse.png",
+    alt: "Organized consumer electronics accessories warehouse",
   },
 };
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
+}
+
+function BrandLockup({ footer = false }: { footer?: boolean }) {
+  return (
+    <span className={`brand-lockup ${footer ? "brand-lockup-footer" : ""}`}>
+      <span className="brand-mark-shell" aria-hidden="true">
+        <img src="/images/adsons-mark.png" alt="" />
+      </span>
+      <span className="wordmark-text">
+        <strong>{siteConfig.name}</strong>
+        <small>{footer ? `Since ${siteConfig.establishedYear}` : siteConfig.descriptor}</small>
+      </span>
+    </span>
+  );
 }
 
 function Header({ page }: { page: Page }) {
@@ -74,11 +95,7 @@ function Header({ page }: { page: Page }) {
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <div className="header-inner">
         <Link className="wordmark" href="/" aria-label="Adsons home">
-          <span className="mark" aria-hidden="true"><i /></span>
-          <span className="wordmark-text">
-            <strong>{siteConfig.name}</strong>
-            <small>{siteConfig.descriptor}</small>
-          </span>
+          <BrandLockup />
         </Link>
 
         <button
@@ -105,9 +122,9 @@ function Header({ page }: { page: Page }) {
           ))}
         </nav>
 
-        <a className="header-cta" href={whatsappHref()} target="_blank" rel="noreferrer">
+        <Link className="header-cta" href="/contact">
           Trade enquiry <Arrow />
-        </a>
+        </Link>
       </div>
     </header>
   );
@@ -119,10 +136,9 @@ function Footer() {
       <div className="container footer-top">
         <div>
           <Link className="wordmark wordmark-footer" href="/">
-            <span className="mark" aria-hidden="true"><i /></span>
-            <span className="wordmark-text"><strong>Adsons</strong><small>Trading & Retail</small></span>
+            <BrandLockup footer />
           </Link>
-          <p>Connecting markets with dependable mobile and computer accessory categories.</p>
+          <p>{siteConfig.signature}</p>
         </div>
         <div className="footer-nav">
           <div>
@@ -134,39 +150,16 @@ function Footer() {
             {navigation.slice(4).map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
           </div>
           <div>
-            <span>Regions</span>
-            <p>Africa</p><p>Asia</p><p>North America</p>
+            <span>Markets</span>
+            {markets.map((market) => <p key={market.name}>{market.name}</p>)}
           </div>
         </div>
       </div>
       <div className="container footer-bottom">
         <p>© {new Date().getFullYear()} Adsons. All rights reserved.</p>
-        <p>20+ years of trading and retail experience.</p>
+        <p>Established {siteConfig.establishedYear}.</p>
       </div>
     </footer>
-  );
-}
-
-function WhatsAppButton() {
-  return (
-    <a
-      className="whatsapp-float"
-      href={whatsappHref()}
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Start a WhatsApp conversation with Adsons"
-    >
-      <svg
-        className="whatsapp-icon"
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-      >
-        <path
-          fill="currentColor"
-          d="M16.04 3A12.93 12.93 0 0 0 5.08 22.8L3.2 29l6.36-1.82A12.95 12.95 0 1 0 16.04 3Zm0 23.62c-2.1 0-4.15-.62-5.89-1.79l-.42-.25-3.78 1.08 1.12-3.68-.27-.43a10.65 10.65 0 1 1 9.24 5.07Zm5.84-7.98c-.32-.16-1.9-.94-2.2-1.05-.29-.1-.5-.16-.71.16-.21.32-.82 1.05-1 1.26-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.58a9.64 9.64 0 0 1-1.78-2.21c-.19-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.18.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.54-.71-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.07 1.3 3.28c.16.21 2.24 3.42 5.42 4.8.76.32 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.77 2.17-1.52.26-.74.26-1.38.18-1.51-.08-.14-.29-.22-.61-.38Z"
-        />
-      </svg>
-    </a>
   );
 }
 
@@ -176,7 +169,6 @@ function Layout({ page, children }: { page: Page; children: React.ReactNode }) {
       <Header page={page} />
       <main>{children}</main>
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }
@@ -196,11 +188,11 @@ function CTA({ compact = false }: { compact?: boolean }) {
     <section className={`cta-panel ${compact ? "compact" : ""}`}>
       <div className="container cta-inner">
         <p className="eyebrow light">A conversation is the starting point</p>
-        <h2>Tell us what your market is looking for.</h2>
-        <p>Share your country, company and category needs. We’ll take the conversation forward directly.</p>
-        <a className="button button-light" href={whatsappHref()} target="_blank" rel="noreferrer">
+        <h2>Build your next supply partnership with Adsons.</h2>
+        <p>Tell us about your business, market and broad requirements. We’ll continue the conversation directly.</p>
+        <Link className="button button-light" href="/contact">
           Start a trade enquiry <Arrow />
-        </a>
+        </Link>
       </div>
     </section>
   );
@@ -210,7 +202,7 @@ function InnerHero({ page }: { page: Exclude<Page, "home"> }) {
   const hero = pageHero[page];
   return (
     <section className="inner-hero">
-      <img src={hero.image} alt="" />
+      <img src={hero.image} alt={hero.alt} />
       <div className="photo-wash" />
       <div className="container inner-hero-content">
         <p className="eyebrow light">{hero.eyebrow}</p>
@@ -221,17 +213,38 @@ function InnerHero({ page }: { page: Exclude<Page, "home"> }) {
   );
 }
 
-function CategoryGrid({ limit }: { limit?: number }) {
+function StrengthGrid() {
   return (
-    <div className="category-grid">
-      {categories.slice(0, limit).map((category) => (
-        <article className="category-card" key={category.title}>
-          <div className="category-top"><span>{category.number}</span><Arrow /></div>
-          <h3>{category.title}</h3>
-          <p>{category.copy}</p>
-          <ul>{category.items.map((item) => <li key={item}>{item}</li>)}</ul>
+    <div className="strength-grid">
+      {strengths.map((item, index) => (
+        <article key={item.title}>
+          <span>0{index + 1}</span>
+          <h3>{item.title}</h3>
+          <p>{item.copy}</p>
         </article>
       ))}
+    </div>
+  );
+}
+
+function MarketList() {
+  return (
+    <div className="region-list">
+      {markets.map((market) => (
+        <article key={market.name}>
+          <span>{market.number}</span>
+          <h3>{market.name}</h3>
+          <p>{market.copy}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function LogoStage() {
+  return (
+    <div className="logo-stage">
+      <img src="/images/adsons-logo.png" alt="Adsons - Since 2001" />
     </div>
   );
 }
@@ -240,79 +253,74 @@ function HomePage() {
   return (
     <Layout page="home">
       <section className="home-hero">
-        <img src="/images/architecture.jpg" alt="Reflective modern architecture under a blue sky" />
+        <img src="/images/warehouse.png" alt="Organized consumer electronics accessories warehouse" />
         <div className="photo-wash" />
         <div className="container hero-content">
-          <p className="eyebrow light">Electronics trading & retail · Established legacy</p>
-          <h1>Connecting markets.<br />Powering everyday technology.</h1>
-          <p className="hero-copy">Adsons connects dependable mobile and computer accessories with wholesale partners across Africa, Asia and North America.</p>
+          <p className="eyebrow light">International trading · Established 2001</p>
+          <h1>Connecting businesses.<br />Building lasting partnerships.</h1>
+          <p className="hero-copy">Adsons specializes in the import, export and wholesale distribution of cellphone accessories across international markets.</p>
           <div className="hero-actions">
-            <a className="button button-light" href={whatsappHref()} target="_blank" rel="noreferrer">Start a trade enquiry <Arrow /></a>
+            <Link className="button button-light" href="/contact">Start a trade enquiry <Arrow /></Link>
             <Link className="text-link light" href="/about">Discover Adsons <Arrow /></Link>
           </div>
         </div>
         <div className="hero-proof">
-          <div><strong>20+</strong><span>Years of experience</span></div>
-          <div><strong>03</strong><span>Retail locations</span></div>
-          <div><strong>03</strong><span>Regions served</span></div>
+          <div><strong>2001</strong><span>Year established</span></div>
+          <div><strong>Global</strong><span>Sourcing & distribution</span></div>
+          <div><strong>02</strong><span>Proprietary brands</span></div>
         </div>
       </section>
 
       <section className="intro-section section-space">
         <div className="container intro-grid">
-          <p className="eyebrow">What we do</p>
+          <p className="eyebrow">Who we are</p>
           <div>
-            <h2>Experience on the ground.<br />Perspective across markets.</h2>
-            <p>For more than two decades, Adsons has worked at the intersection of electronics trading and retail. That combination gives us a practical view of what moves, what lasts and what different markets need.</p>
-            <Link className="text-link" href="/trading">Explore our business <Arrow /></Link>
+            <h2>International reach.<br />A relationship-first approach.</h2>
+            <p>For nearly 25 years, Adsons has earned the trust of wholesalers, distributors, retailers and importers through quality products, competitive pricing and dependable service.</p>
+            <Link className="text-link" href="/about">Read our story <Arrow /></Link>
           </div>
         </div>
       </section>
 
       <section className="business-section section-space">
         <div className="container">
-          <SectionHeading eyebrow="Our business" title="Two sides of one connected business." copy="International trading gives us reach. Retail keeps us close to real demand." />
+          <SectionHeading eyebrow="Our business" title="Trusted sourcing, reliable supply and brands of our own." copy="Adsons connects manufacturers with businesses worldwide while developing proprietary brands for the changing cellphone accessories market." />
           <div className="business-grid">
             <Link href="/trading" className="business-card business-trade">
-              <img src="/images/trade.jpg" alt="Container ship travelling through open water" />
+              <img src="/images/warehouse.png" alt="Consumer electronics accessories stored in an organized warehouse" />
               <div className="card-shade" />
-              <div><span>01 / Trading & Distribution</span><h3>Moving the right categories across markets.</h3><p>Explore trading <Arrow /></p></div>
+              <div><span>01 / International Trading</span><h3>Import, export and wholesale distribution.</h3><p>Explore our approach <Arrow /></p></div>
             </Link>
-            <Link href="/retail" className="business-card business-retail">
-              <img src="/images/technology.jpg" alt="Mobile and computer accessories arranged on a desk" />
+            <Link href="/categories" className="business-card business-retail">
+              <img src="/images/technology.jpg" alt="Everyday cellphone and computer accessories" />
               <div className="card-shade" />
-              <div><span>02 / Retail Network</span><h3>Staying close to customers and demand.</h3><p>Explore retail <Arrow /></p></div>
+              <div><span>02 / Proprietary Brands</span><h3>ADSONS and DIGIT, built for global markets.</h3><p>Meet our brands <Arrow /></p></div>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="categories-section section-space">
+      <section className="strengths-section section-space">
         <div className="container">
-          <SectionHeading eyebrow="Product categories" title="Everyday technology, considered by category." copy="We present broad category capabilities—not individual products, pricing, brands or stock." />
-          <CategoryGrid limit={6} />
-          <div className="section-end-link"><Link className="text-link" href="/categories">View all categories <Arrow /></Link></div>
+          <SectionHeading eyebrow="Why Adsons" title="Experience that supports confident growth." copy="A practical trading foundation built through international experience and long-term relationships." />
+          <StrengthGrid />
         </div>
       </section>
 
       <section className="regions-section section-space">
         <div className="container regions-layout">
-          <SectionHeading eyebrow="Markets we serve" title="Local understanding. International outlook." copy="We work across distinct regions while keeping every relationship direct and commercially focused." />
-          <div className="region-list">
-            {regions.map((region) => (
-              <article key={region.name}><span>{region.number}</span><h3>{region.name}</h3><p>{region.copy}</p></article>
-            ))}
-          </div>
+          <SectionHeading eyebrow="Markets we serve" title="Connecting businesses across borders." copy="Our sourcing network and supply chain support established relationships in the Middle East, Africa and wider international markets." />
+          <MarketList />
         </div>
       </section>
 
       <section className="legacy-section">
-        <div className="legacy-image"><img src="/images/architecture.jpg" alt="Modern glass architecture reflecting the sky" /></div>
+        <LogoStage />
         <div className="legacy-copy">
-          <p className="eyebrow">The Adsons perspective</p>
-          <h2>Built through continuity, shaped by change.</h2>
-          <p>Technology changes quickly. Trust is built slowly. Adsons brings both ideas together—staying responsive to the market while building relationships for the long term.</p>
-          <Link className="text-link" href="/about">Our story <Arrow /></Link>
+          <p className="eyebrow">Our purpose</p>
+          <h2>Strong businesses begin with trust.</h2>
+          <p>We connect businesses through trusted products, reliable supply solutions and enduring partnerships that create mutual growth and long-term success.</p>
+          <Link className="text-link" href="/retail">What guides us <Arrow /></Link>
         </div>
       </section>
       <CTA />
@@ -326,72 +334,127 @@ function TradingPage() {
       <InnerHero page="trading" />
       <section className="section-space">
         <div className="container intro-grid">
-          <p className="eyebrow">Our approach</p>
-          <div><h2>Trading with context, not assumptions.</h2><p>Our work begins with the market: who the customer is, how the category moves and what a dependable commercial relationship should look like. From there, Adsons helps connect suitable electronics categories with wholesale opportunities.</p></div>
-        </div>
-      </section>
-      <section className="process-section section-space">
-        <div className="container">
-          <SectionHeading eyebrow="How we work" title="A clear path from requirement to relationship." />
-          <div className="process-grid">
-            {[
-              ["01", "Understand", "We begin with your market, channel and broad category requirements."],
-              ["02", "Align", "We identify the category direction and commercial fit worth discussing."],
-              ["03", "Coordinate", "Our team keeps communication direct as requirements develop."],
-              ["04", "Grow", "We focus on relationships designed to adapt as markets evolve."],
-            ].map(([n, title, copy]) => <article key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></article>)}
+          <p className="eyebrow">What we do</p>
+          <div>
+            <h2>From global sourcing to reliable distribution.</h2>
+            <p>Through a trusted sourcing network and an efficient supply chain, Adsons connects leading manufacturers with businesses worldwide, supporting consistent product availability and dependable service.</p>
           </div>
         </div>
       </section>
-      <section className="regions-section section-space">
-        <div className="container regions-layout">
-          <SectionHeading eyebrow="Trading reach" title="Three regions. Different opportunities." copy="Our public website keeps commercial detail private. Serious requirements move into a direct conversation." />
-          <div className="region-list">{regions.map((region) => <article key={region.name}><span>{region.number}</span><h3>{region.name}</h3><p>{region.copy}</p></article>)}</div>
+
+      <section className="process-section section-space">
+        <div className="container">
+          <SectionHeading eyebrow="How we work" title="A clear path from requirement to partnership." />
+          <div className="process-grid">
+            {[
+              ["01", "Understand", "We begin with your business, market and broad cellphone accessory requirements."],
+              ["02", "Source", "Our global network helps align trusted supply with the right commercial opportunity."],
+              ["03", "Coordinate", "Direct communication and an efficient supply chain keep requirements moving."],
+              ["04", "Grow", "Every order is an opportunity to strengthen a long-term business partnership."],
+            ].map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
+          </div>
         </div>
       </section>
+
       <section className="strengths-section section-space">
-        <div className="container"><SectionHeading eyebrow="Why Adsons" title="Experience that stays useful." /><div className="strength-grid">{strengths.map((item, index) => <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div></div>
+        <div className="container">
+          <SectionHeading eyebrow="Why Adsons" title="Nearly 25 years of focused trading expertise." />
+          <StrengthGrid />
+        </div>
+      </section>
+
+      <section className="regions-section section-space">
+        <div className="container regions-layout">
+          <SectionHeading eyebrow="International reach" title="Built to connect markets." copy="Adsons serves wholesalers, distributors, retailers and importers across the Middle East, Africa and international markets." />
+          <MarketList />
+        </div>
       </section>
       <CTA />
     </Layout>
   );
 }
 
-function CategoriesPage() {
+function BrandsPage() {
   return (
     <Layout page="categories">
       <InnerHero page="categories" />
       <section className="section-space">
-        <div className="container">
-          <div className="wide-heading"><SectionHeading eyebrow="Our range" title="Broad enough to respond. Focused enough to understand." copy="These categories are representative and can evolve with the business. Specific products, brands, prices, stock and sourcing details remain private." /></div>
-          <CategoryGrid />
+        <div className="container intro-grid">
+          <p className="eyebrow">Owned & developed by Adsons</p>
+          <div>
+            <h2>Two proprietary brands. One commitment to dependable value.</h2>
+            <p>Alongside our international trading operations, Adsons owns and develops ADSONS and DIGIT. Both brands are shaped around quality, performance and value for an evolving global marketplace.</p>
+          </div>
         </div>
       </section>
+
+      <section className="brand-section section-space">
+        <div className="container">
+          <SectionHeading eyebrow="Our brands" title="Developed with the market in mind." />
+          <div className="brand-grid">
+            {brands.map((brand) => (
+              <article className="brand-card" key={brand.name}>
+                <span>{brand.number}</span>
+                <h3>{brand.name}</h3>
+                <p>{brand.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="privacy-band">
-        <div className="container privacy-inner"><span>Private by design</span><h2>Commercial details belong in a conversation, not a public catalogue.</h2><p>We share enough to show where we operate, while protecting the product and sourcing intelligence behind each relationship.</p><a className="text-link light" href={whatsappHref("Hello Adsons, I would like to discuss your product categories for my market.")} target="_blank" rel="noreferrer">Discuss a category <Arrow /></a></div>
+        <div className="container privacy-inner">
+          <span>Portfolio update</span>
+          <h2>Product and collection details will be added here later.</h2>
+          <div>
+            <p>For now, this page introduces the confirmed proprietary brands without publishing unverified product information.</p>
+            <Link className="text-link light" href="/contact">Discuss a business requirement <Arrow /></Link>
+          </div>
+        </div>
       </section>
       <CTA compact />
     </Layout>
   );
 }
 
-function RetailPage() {
+function ValuesPage() {
   return (
     <Layout page="retail">
       <InnerHero page="retail" />
       <section className="section-space">
-        <div className="container intro-grid"><p className="eyebrow">Retail at Adsons</p><div><h2>Where market knowledge becomes practical.</h2><p>Retail is more than another part of the business. It gives Adsons a direct view of customer habits, category demand and the day-to-day realities facing electronics sellers.</p></div></div>
-      </section>
-      <section className="store-section section-space">
-        <div className="container">
-          <SectionHeading eyebrow="Our locations" title="Three stores, ready to be introduced." copy="Store names, addresses, opening hours and photographs will be added after the owner review." />
-          <div className="store-grid">
-            {["Store One", "Store Two", "Store Three"].map((store, i) => <article key={store}><div className="store-number">0{i + 1}</div><p>Adsons retail network</p><h3>{store}</h3><span>Location details to be confirmed</span><a href={whatsappHref("Hello Adsons, I would like information about your retail locations.")} target="_blank" rel="noreferrer">Ask on WhatsApp <Arrow /></a></article>)}
+        <div className="container intro-grid">
+          <p className="eyebrow">Our promise</p>
+          <div>
+            <h2>Success is measured by the partnerships we build.</h2>
+            <p>Every order is an opportunity to earn trust. Every shipment is a promise delivered. Every partnership is built to last.</p>
           </div>
         </div>
       </section>
-      <section className="retail-insight section-space">
-        <div className="container split-image-copy"><img src="/images/technology.jpg" alt="Technology accessories in a modern workspace" /><div><p className="eyebrow">A connected advantage</p><h2>Retail insight strengthens every trade conversation.</h2><p>Being close to the customer helps us understand how categories are considered, compared and adopted. That perspective informs a more grounded approach to wholesale trading.</p><Link className="text-link" href="/trading">Explore trading <Arrow /></Link></div></div>
+
+      <section className="values-section section-space">
+        <div className="container">
+          <SectionHeading eyebrow="Our core values" title="How we work, every day and across every market." />
+          <div className="value-grid">
+            {values.map((value, index) => (
+              <article key={value.title}>
+                <span>0{index + 1}</span>
+                <h3>{value.title}</h3>
+                <p>{value.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="legacy-section reverse">
+        <div className="legacy-image"><img src="/images/warehouse.png" alt="Organized consumer electronics accessories warehouse" /></div>
+        <div className="legacy-copy">
+          <p className="eyebrow">Our commitment</p>
+          <h2>Professional in approach. Personal in commitment.</h2>
+          <p>We create lasting value through trusted partnerships, reliable supply solutions and a customer-first way of working.</p>
+          <Link className="text-link" href="/about">Learn about Adsons <Arrow /></Link>
+        </div>
       </section>
       <CTA />
     </Layout>
@@ -403,18 +466,45 @@ function AboutPage() {
     <Layout page="about">
       <InnerHero page="about" />
       <section className="section-space">
-        <div className="container intro-grid"><p className="eyebrow">Our story</p><div><h2>A legacy shaped through electronics, trade and retail.</h2><p>For more than 20 years, Adsons has grown by staying close to the market and committed to its relationships. The business combines international trading experience with the everyday perspective of a three-store retail network.</p><p>That balance helps us think beyond transactions—to understand category relevance, customer demand and the value of dependable long-term partnerships.</p></div></div>
+        <div className="container intro-grid">
+          <p className="eyebrow">Our story</p>
+          <div>
+            <h2>Growing through trust, experience and global collaboration.</h2>
+            <p>Established in 2001, Adsons has grown from a trading business into a trusted international partner in the cellphone accessories industry.</p>
+            <p>Over the years, we have expanded our global sourcing network, strengthened our supply chain and built long-term relationships with customers and suppliers across multiple markets.</p>
+          </div>
+        </div>
       </section>
-      <section className="numbers-band"><div className="container number-grid"><div><strong>20+</strong><span>Years in business</span></div><div><strong>03</strong><span>Retail shops</span></div><div><strong>03</strong><span>International regions</span></div><div><strong>01</strong><span>Connected business</span></div></div></section>
-      <section className="section-space values-section">
-        <div className="container"><SectionHeading eyebrow="What guides us" title="Professional in approach. Personal in commitment." /><div className="strength-grid">{[
-          ["Clarity", "Straightforward conversations and a clear understanding of what each market needs."],
-          ["Continuity", "Relationships built to last beyond an individual requirement or transaction."],
-          ["Responsiveness", "An ability to adapt as customer demand and technology categories change."],
-          ["Perspective", "Commercial decisions informed by experience across trading and retail."],
-        ].map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div>
+
+      <section className="numbers-band">
+        <div className="container number-grid">
+          <div><strong>2001</strong><span>Established</span></div>
+          <div><strong>Import</strong><span>International sourcing</span></div>
+          <div><strong>Export</strong><span>Global distribution</span></div>
+          <div><strong>02</strong><span>Proprietary brands</span></div>
+        </div>
       </section>
-      <section className="legacy-section reverse"><div className="legacy-image"><img src="/images/trade.jpg" alt="Cargo ship representing international trade" /></div><div className="legacy-copy"><p className="eyebrow">Looking forward</p><h2>A mature business with an adaptable outlook.</h2><p>Our legacy gives us confidence, not complacency. Adsons continues to respond to new categories, shifting channels and opportunities across international markets.</p><a className="text-link" href={whatsappHref()} target="_blank" rel="noreferrer">Begin a conversation <Arrow /></a></div></section>
+
+      <section className="section-space purpose-section">
+        <div className="container">
+          <SectionHeading eyebrow="Our direction" title="A clear purpose, mission and vision." />
+          <div className="purpose-grid">
+            <article><span>01</span><h3>Purpose</h3><p>To connect businesses through trusted products, reliable supply solutions and enduring partnerships.</p></article>
+            <article><span>02</span><h3>Mission</h3><p>To provide reliable cellphone accessories, trusted brands and efficient global supply solutions that help businesses grow with confidence.</p></article>
+            <article><span>03</span><h3>Vision</h3><p>To become one of the world’s most trusted companies in the cellphone accessories industry, recognized for quality, innovation and long-term partnerships.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="legacy-section reverse">
+        <LogoStage />
+        <div className="legacy-copy">
+          <p className="eyebrow">Brand philosophy</p>
+          <h2>Built on trust. Built to last.</h2>
+          <p>We believe the strongest businesses are built on trust, and the strongest partnerships are built to last.</p>
+          <Link className="text-link" href="/retail">Explore our values <Arrow /></Link>
+        </div>
+      </section>
       <CTA />
     </Layout>
   );
@@ -426,16 +516,48 @@ function ContactPage() {
       <InnerHero page="contact" />
       <section className="contact-section section-space">
         <div className="container contact-layout">
-          <div><p className="eyebrow">Start here</p><h2>A direct conversation, from the first message.</h2><p>WhatsApp is the fastest way to reach Adsons. Introduce your company, market and the broad category you are interested in, and our team can respond with the right next step.</p></div>
-          <div className="contact-card"><span>Primary contact</span><h3>Wholesale & trade enquiries</h3><p>Recommended message details:</p><ul><li>Your name and company</li><li>Country or market</li><li>Category of interest</li><li>Approximate requirement</li></ul><a className="button button-dark" href={whatsappHref()} target="_blank" rel="noreferrer">Continue on WhatsApp <Arrow /></a>{!siteConfig.whatsappNumber && <small>MVP note: connect the official WhatsApp number before launch.</small>}</div>
+          <div>
+            <p className="eyebrow">Start here</p>
+            <h2>A focused conversation from the first introduction.</h2>
+            <p>Adsons welcomes enquiries from wholesalers, distributors, retailers, importers, manufacturers and relevant business partners.</p>
+          </div>
+          <div className="contact-card">
+            <span>Trade & partnership enquiries</span>
+            <h3>Help us understand your requirement.</h3>
+            <p>Include these details in your first message:</p>
+            <ul>
+              <li>Your name and company</li>
+              <li>Country or market</li>
+              <li>Nature of your enquiry</li>
+              <li>Broad requirement or opportunity</li>
+            </ul>
+            <div className="contact-status">
+              <strong>Contact details coming soon</strong>
+              <small>The official WhatsApp number, email and phone will be added after confirmation.</small>
+            </div>
+          </div>
         </div>
       </section>
-      <section className="contact-options section-space"><div className="container"><SectionHeading eyebrow="Other enquiries" title="Choose the right starting point." /><div className="option-grid">{[
-        ["Wholesale", "Discuss broad categories and market requirements.", "Hello Adsons, I would like to discuss a wholesale requirement."],
-        ["Retail", "Ask about the Adsons retail network and store details.", "Hello Adsons, I would like information about your retail locations."],
-        ["Partnerships", "Introduce a relevant supply or business opportunity.", "Hello Adsons, I would like to introduce a business partnership opportunity."],
-      ].map(([title, copy, message]) => <article key={title}><h3>{title}</h3><p>{copy}</p><a className="text-link" href={whatsappHref(message)} target="_blank" rel="noreferrer">Start a conversation <Arrow /></a></article>)}</div></div></section>
-      <section className="preparation-band"><div className="container"><p className="eyebrow light">Before launch</p><h2>Business contact details and store locations will be confirmed with the owner.</h2></div></section>
+
+      <section className="contact-options section-space">
+        <div className="container">
+          <SectionHeading eyebrow="Who we work with" title="A starting point for every serious business conversation." />
+          <div className="option-grid">
+            {[
+              ["Wholesale & Distribution", "Discuss market requirements, supply needs and long-term distribution opportunities."],
+              ["Retailers & Importers", "Introduce your business and the broad cellphone accessory needs of your market."],
+              ["Manufacturers & Partners", "Share a relevant sourcing, supply or strategic partnership opportunity."],
+            ].map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p><Link className="text-link" href="/trading">Our trading approach <Arrow /></Link></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="preparation-band">
+        <div className="container">
+          <p className="eyebrow light">Adsons · Since 2001</p>
+          <h2>{siteConfig.signature}</h2>
+        </div>
+      </section>
     </Layout>
   );
 }
@@ -443,8 +565,8 @@ function ContactPage() {
 export function SitePage({ page }: { page: Page }) {
   if (page === "home") return <HomePage />;
   if (page === "trading") return <TradingPage />;
-  if (page === "categories") return <CategoriesPage />;
-  if (page === "retail") return <RetailPage />;
+  if (page === "categories") return <BrandsPage />;
+  if (page === "retail") return <ValuesPage />;
   if (page === "about") return <AboutPage />;
   return <ContactPage />;
 }

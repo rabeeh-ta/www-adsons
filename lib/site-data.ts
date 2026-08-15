@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "Adsons",
-  descriptor: "Trading & Retail",
+  name: "ADSONS",
+  descriptor: "International Trading",
+  establishedYear: "2001",
+  signature: "Connecting Businesses. Building Lasting Partnerships.",
   whatsappNumber: "",
-  whatsappText:
-    "Hello Adsons, I would like to discuss a wholesale electronics requirement.",
   email: "",
   phone: "",
 };
@@ -11,90 +11,91 @@ export const siteConfig = {
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/trading", label: "Trading" },
-  { href: "/categories", label: "Categories" },
-  { href: "/retail", label: "Retail Network" },
+  { href: "/categories", label: "Brands" },
+  { href: "/retail", label: "Values" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
-export const categories = [
+export const brands = [
   {
     number: "01",
-    title: "Charging & Power",
-    items: ["Charging solutions", "Portable power", "Power accessories"],
-    copy: "Dependable everyday power solutions for fast-moving retail environments.",
+    name: "ADSONS",
+    copy: "A proprietary Adsons brand developed around quality, performance and dependable value for international markets.",
   },
   {
     number: "02",
-    title: "Cables & Connectivity",
-    items: ["Data connectivity", "Adapters", "Everyday cables"],
-    copy: "Practical connectivity essentials selected for broad market demand.",
-  },
-  {
-    number: "03",
-    title: "Audio Accessories",
-    items: ["Personal audio", "Portable audio", "Audio essentials"],
-    copy: "Accessible audio categories suited to a wide range of retail channels.",
-  },
-  {
-    number: "04",
-    title: "Mobile Utility",
-    items: ["Protection", "Mounting", "Daily-use accessories"],
-    copy: "High-utility accessories that support the everyday mobile experience.",
-  },
-  {
-    number: "05",
-    title: "Computer Peripherals",
-    items: ["Input devices", "Desk essentials", "Computer connectivity"],
-    copy: "Core peripherals and desk accessories for work, study and everyday use.",
-  },
-  {
-    number: "06",
-    title: "Storage & Everyday Tech",
-    items: ["Digital storage", "Technology essentials", "Utility electronics"],
-    copy: "Selected technology categories aligned with changing customer needs.",
+    name: "DIGIT",
+    copy: "A proprietary Adsons brand created to respond to evolving customer needs in the global cellphone accessories market.",
   },
 ];
 
-export const regions = [
+export const markets = [
+  {
+    name: "Middle East",
+    number: "01",
+    copy: "Long-standing trade relationships supported by dependable service and a trusted sourcing network.",
+  },
   {
     name: "Africa",
-    number: "01",
-    copy: "Long-term market perspective shaped by diverse retail and distribution needs.",
-  },
-  {
-    name: "Asia",
     number: "02",
-    copy: "Strong commercial networks across one of the world’s most dynamic technology regions.",
+    copy: "Wholesale partnerships built around product availability, competitive value and reliable distribution.",
   },
   {
-    name: "North America",
+    name: "International Markets",
     number: "03",
-    copy: "Responsive trading relationships built around quality, timing and market fit.",
+    copy: "Cross-border sourcing and supply solutions shaped around the needs of wholesalers, distributors and importers.",
   },
 ];
 
 export const strengths = [
   {
-    title: "Market-aware sourcing",
-    copy: "Category decisions informed by real retail demand and changing customer preferences.",
+    title: "Global sourcing network",
+    copy: "Trusted manufacturer relationships and international sourcing experience support consistent product availability.",
   },
   {
-    title: "Relationship-led trading",
-    copy: "A practical, responsive approach built for lasting wholesale partnerships.",
+    title: "Import, export & wholesale",
+    copy: "Nearly 25 years of focused experience in international cellphone accessories trading and distribution.",
   },
   {
-    title: "Retail-grounded insight",
-    copy: "Three shops keep Adsons connected to what customers need in the real world.",
+    title: "Reliable supply solutions",
+    copy: "An efficient supply chain and dependable logistics help businesses plan and grow with confidence.",
   },
   {
-    title: "International perspective",
-    copy: "Experience navigating different markets, commercial expectations and product needs.",
+    title: "Partnership-led service",
+    copy: "A customer-first approach built on professionalism, integrity and long-term commercial relationships.",
   },
 ];
 
-export function whatsappHref(message = siteConfig.whatsappText) {
+export const values = [
+  {
+    title: "Relationships First",
+    copy: "Trust is the starting point, and lasting partnerships are at the heart of everything we do.",
+  },
+  {
+    title: "Customer Success",
+    copy: "We understand customer needs, deliver dependable service and help their businesses grow.",
+  },
+  {
+    title: "Quality",
+    copy: "We pursue quality, reliability and value so every partnership can move forward with confidence.",
+  },
+  {
+    title: "Global Collaboration",
+    copy: "We connect businesses across borders through trusted sourcing, international trade and distribution.",
+  },
+  {
+    title: "Innovation",
+    copy: "We adapt to changing technology, evolving customer needs and new global market opportunities.",
+  },
+  {
+    title: "Excellence",
+    copy: "Professionalism, continuous improvement and attention to detail guide our work every day.",
+  },
+];
+
+export function whatsappHref(message: string) {
   const number = siteConfig.whatsappNumber.replace(/\D/g, "");
-  const path = number ? `https://wa.me/${number}` : "https://wa.me/";
-  return `${path}?text=${encodeURIComponent(message)}`;
+  if (!number) return "/contact";
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }

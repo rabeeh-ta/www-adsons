@@ -2,58 +2,39 @@
 
 ## Purpose
 
-The website positions Adsons as an established electronics trading and retail business. Its primary job is to create confidence with international wholesale prospects and move qualified conversations to WhatsApp.
+The website positions Adsons as an established international trading company specializing in the import, export and wholesale distribution of cellphone accessories. Its primary job is to build confidence with serious business prospects and open direct trade conversations.
 
-## Priority audiences
+## Verified positioning
 
-1. International wholesalers, distributors and retail chains
-2. Manufacturers and suppliers seeking a trading relationship
-3. Corporate or institutional buyers
-4. Local retail customers
-
-## Positioning
-
-Adsons is presented as a global sourcing, trading and distribution partner backed by more than 20 years of electronics experience and a three-store retail network.
-
-Working headline: **Connecting markets. Powering everyday technology.**
+- Established in 2001
+- International import, export and wholesale distribution
+- Cellphone accessories specialization
+- Trusted global sourcing network and efficient supply chain
+- Proprietary brands: ADSONS and DIGIT
+- Relationships across the Middle East, Africa and international markets
+- Brand signature: **Connecting Businesses. Building Lasting Partnerships.**
 
 ## Site structure
 
-- **Home:** Brand positioning, proof points, business model, categories, regions and enquiry route
-- **Trading & Distribution:** Trading approach, process, strengths and regional reach
-- **Product Categories:** Broad categories and general subcategories only
-- **Retail Network:** The role of retail and three store profiles
-- **About Adsons:** Legacy, perspective, values and company story
-- **Contact:** WhatsApp-led wholesale, retail and partnership enquiries
+- **Home:** Positioning, proof, trading model, strengths, markets and enquiry route
+- **International Trading:** Sourcing, supply, distribution and partnership approach
+- **Our Brands:** Confirmed high-level information about ADSONS and DIGIT
+- **Our Values:** The six values supplied in the company content
+- **About Adsons:** Story, purpose, mission, vision and brand philosophy
+- **Contact:** Audience guidance and the information needed for a qualified enquiry
 
-## Permanent information boundary
+## Current information boundary
 
-The public website must never display:
+Do not publish individual products, collections, model numbers, prices, stock, suppliers or commercial terms until approved content is supplied. Do not invent addresses, phone numbers, email addresses or social accounts.
 
-- Individual products or model numbers
-- Brands, suppliers or sourcing relationships
-- Prices, stock or commercial terms
-- Product counts or detailed ranges
-- Downloadable or requestable catalogues
-- Ecommerce, checkout or customer accounts
+## Visual direction
 
-Only broad categories and safe general subcategories are public. Commercial detail moves into a direct, qualified conversation.
-
-## Visual system
-
-- Solid ink navy, corporate blue, pale blue, frost and white
-- No gradients, neon color effects or decorative “AI” color treatments
-- Large editorial typography and generous white space
-- Blue-toned architecture, global trade and restrained technology photography
-- Fine borders, squared cards and subtle movement
-- Transparent header over photography, changing to white on scroll
-
-## Conversion approach
-
-WhatsApp is the primary conversion channel, used in the header, hero, contextual sections and a persistent floating button. Messages should be prefilled for wholesale, retail and partnership contexts.
-
-Phone and email may be added as secondary contact routes after owner confirmation.
+- Brand navy, red, white and restrained pale blue
+- Official Adsons logo used in the header, footer and brand sections
+- Editorial typography, squared cards and generous white space
+- Brand-neutral consumer-electronics warehouse photography
+- No cargo ships or shipping-container imagery
 
 ## Content model
 
-Business information lives in `lib/site-data.ts`, keeping categories, regions, claims and contact settings easy to update after owner review.
+Shared business information lives in `lib/site-data.ts`. Contact details and approved product/collection content can be added there during the next content round.

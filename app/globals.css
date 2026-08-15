@@ -5,6 +5,7 @@
   --navy: #0b2e58;
   --blue: #174a82;
   --sky: #68a7d3;
+  --red: #e3182d;
   --frost: #f4f7fa;
   --line: #d9e2eb;
   --muted: #607184;
@@ -94,8 +95,12 @@ h3 {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--sky);
+  background: var(--blue);
   content: "";
+}
+
+.eyebrow.light::before {
+  background: var(--sky);
 }
 
 .eyebrow.light {
@@ -136,8 +141,9 @@ h3 {
   top: 0;
   right: 0;
   left: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  color: var(--white);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--ink);
   transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
@@ -164,30 +170,30 @@ h3 {
   gap: 12px;
 }
 
-.mark {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.mark::after,
-.mark i {
-  position: absolute;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  content: "";
+.brand-mark-shell {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
-.mark::after {
-  inset: 5px;
+.brand-mark-shell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.mark i {
-  inset: 11px;
-  border-width: 1px;
-  background: currentColor;
+.site-header.is-scrolled .brand-mark-shell {
+  border-color: transparent;
 }
 
 .wordmark-text {
@@ -198,14 +204,14 @@ h3 {
 
 .wordmark-text strong {
   font-family: var(--font-display), Arial, sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.16rem;
   font-weight: 650;
   letter-spacing: -0.04em;
 }
 
 .wordmark-text small {
   margin-top: 5px;
-  font-size: 0.49rem;
+  font-size: 0.46rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -252,7 +258,7 @@ h3 {
   align-items: center;
   gap: 24px;
   padding: 13px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--ink);
   font-size: 0.78rem;
   font-weight: 700;
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
@@ -263,9 +269,9 @@ h3 {
 }
 
 .header-cta:hover {
-  border-color: var(--white);
-  background: var(--white);
-  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
 }
 
 .site-header.is-scrolled .header-cta:hover {
@@ -300,7 +306,7 @@ h3 {
 }
 
 .home-hero > img {
-  object-position: 50% 58%;
+  object-position: 52% 54%;
   transform: scale(1.025);
   animation: hero-settle 1.6s ease-out forwards;
 }
@@ -312,7 +318,7 @@ h3 {
 }
 
 .home-hero .photo-wash {
-  background: rgba(7, 29, 59, 0.72);
+  background: rgba(7, 29, 59, 0.76);
 }
 
 @keyframes hero-settle {
@@ -702,6 +708,20 @@ h3 {
   object-fit: cover;
 }
 
+.logo-stage {
+  min-height: 580px;
+  display: grid;
+  place-items: center;
+  padding: clamp(48px, 8vw, 120px);
+  background: transparent;
+}
+
+.logo-stage img {
+  width: min(100%, 580px);
+  max-height: 440px;
+  object-fit: contain;
+}
+
 .legacy-copy {
   display: flex;
   flex-direction: column;
@@ -722,6 +742,10 @@ h3 {
 }
 
 .legacy-section.reverse .legacy-image {
+  order: 2;
+}
+
+.legacy-section.reverse .logo-stage {
   order: 2;
 }
 
@@ -803,7 +827,7 @@ h3 {
 }
 
 .process-section,
-.store-section,
+.brand-section,
 .contact-options {
   background: var(--frost);
 }
@@ -840,6 +864,93 @@ h3 {
 .option-grid p {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.brand-card {
+  min-height: 400px;
+  padding: 42px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.brand-card > span,
+.value-grid article > span,
+.purpose-grid article > span {
+  display: block;
+  margin-bottom: 92px;
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.brand-card h3 {
+  margin-bottom: 24px;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  color: var(--navy);
+}
+
+.brand-card p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.values-section {
+  background: var(--frost);
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.value-grid article,
+.purpose-grid article {
+  min-height: 330px;
+  padding: 34px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.value-grid article > span,
+.purpose-grid article > span {
+  margin-bottom: 66px;
+}
+
+.value-grid h3,
+.purpose-grid h3 {
+  margin-bottom: 20px;
+}
+
+.value-grid p,
+.purpose-grid p {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.purpose-section {
+  background: var(--white);
+}
+
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.purpose-grid article {
+  min-height: 390px;
 }
 
 .strengths-section {
@@ -1064,6 +1175,28 @@ h3 {
   text-align: center;
 }
 
+.contact-status {
+  padding: 22px 24px;
+  border-left: 3px solid var(--red);
+  background: var(--white);
+}
+
+.contact-status strong,
+.contact-status small {
+  display: block;
+}
+
+.contact-status strong {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.contact-status small {
+  margin: 0;
+  text-align: left;
+  line-height: 1.5;
+}
+
 .option-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -1109,6 +1242,11 @@ h3 {
 
 .wordmark-footer {
   margin-bottom: 30px;
+}
+
+.brand-lockup-footer .brand-mark-shell {
+  width: 66px;
+  height: 40px;
 }
 
 .footer-top > div:first-child > p {
@@ -1201,6 +1339,7 @@ h3 {
   .cta-inner .button { grid-column: 2; grid-row: auto; justify-self: start; margin-top: 34px; }
   .regions-layout { gap: 55px; }
   .process-grid, .strength-grid { grid-template-columns: repeat(2, 1fr); }
+  .value-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-layout { gap: 60px; }
 }
 
@@ -1256,7 +1395,9 @@ h3 {
   .regions-layout, .legacy-section, .split-image-copy, .contact-layout { grid-template-columns: 1fr; }
   .regions-layout { gap: 55px; }
   .legacy-image { min-height: 440px; }
+  .logo-stage { min-height: 440px; }
   .legacy-section.reverse .legacy-image { order: 1; }
+  .legacy-section.reverse .logo-stage { order: 1; }
   .legacy-section.reverse .legacy-copy { order: 2; }
   .cta-inner { display: block; }
   .cta-inner .button { margin-top: 30px; }
@@ -1266,6 +1407,7 @@ h3 {
   .privacy-inner { grid-template-columns: 0.45fr 1.55fr; }
   .privacy-inner p, .privacy-inner .text-link { grid-column: 2; }
   .store-grid { grid-template-columns: 1fr; }
+  .purpose-grid { grid-template-columns: 1fr; }
   .store-grid article { min-height: 330px; }
   .store-number { margin-bottom: 60px; }
   .number-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1279,6 +1421,7 @@ h3 {
   h2 { font-size: 2.4rem; }
   .header-inner { width: calc(100% - 32px); }
   .wordmark-text strong { font-size: 1.1rem; }
+  .brand-mark-shell { width: 52px; height: 32px; }
   .hero-content h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 22px; }
   .hero-proof div { min-height: 105px; padding: 18px 14px; }
@@ -1287,12 +1430,13 @@ h3 {
   .business-card { min-height: 430px; }
   .business-card > div:last-child { right: 24px; bottom: 28px; left: 24px; }
   .business-card h3 { font-size: 2.05rem; }
-  .category-grid, .process-grid, .strength-grid { grid-template-columns: 1fr; }
+  .category-grid, .process-grid, .strength-grid, .brand-grid, .value-grid { grid-template-columns: 1fr; }
   .category-card { min-height: 340px; padding: 26px; }
   .category-top { margin-bottom: 44px; }
   .region-list article { grid-template-columns: 34px 1fr; }
   .region-list p { grid-column: 2; }
   .legacy-image { min-height: 330px; }
+  .logo-stage { min-height: 330px; padding: 52px 30px; }
   .legacy-copy { padding: 68px 24px; }
   .cta-panel { padding-block: 75px; }
   .inner-hero { min-height: 560px; }

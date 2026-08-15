@@ -13,7 +13,7 @@ test("build emits the Netlify server function and public assets", async () => {
     ".netlify/functions-internal/server/main.mjs",
     projectUrl,
   );
-  const publicAsset = new URL("dist/favicon.svg", projectUrl);
+  const publicAsset = new URL("dist/adsons-favicon.png", projectUrl);
 
   await assert.doesNotReject(() => access(functionEntry));
   await assert.doesNotReject(() => access(functionBundle));

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
 import { SitePage } from "@/components/SitePage";
 
-export const metadata: Metadata = { title: "Retail Network", description: "Learn how Adsons’ three-store retail network keeps the business close to customer demand." };
+export const metadata: Metadata = { title: "Our Values", description: "Discover the principles that guide every Adsons relationship, order and partnership." };
 export default function Retail() { return <SitePage page="retail" />; }

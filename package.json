@@ -10,7 +10,7 @@
     "build": "vite build",
     "start": "node .output/server/index.mjs",
     "test": "NITRO_PRESET=netlify npm run build && node --test tests/netlify-build.test.mjs tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern .output --ignore-pattern .netlify",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
