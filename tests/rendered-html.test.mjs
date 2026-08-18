@@ -28,6 +28,10 @@ test("server-renders the Adsons homepage", async () => {
   assert.match(html, /2001/);
   assert.match(html, /ADSONS and DIGIT/);
   assert.match(html, /consumer electronics accessories warehouse/i);
+  assert.match(html, /mailto:contact@adsonsdubai\.com/);
+  assert.match(html, /contact@adsonsdubai\.com/);
+  assert.match(html, /\+971 55 505 5198/);
+  assert.match(html, /wa\.me\/971555055198/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Starter Project/i);
 });
 

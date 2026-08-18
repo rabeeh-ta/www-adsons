@@ -139,6 +139,20 @@ function Footer() {
             <BrandLockup footer />
           </a>
           <p>{siteConfig.signature}</p>
+          <div className="footer-contact">
+            <a href={`mailto:${siteConfig.email}`}>
+              <span>Email</span>
+              {siteConfig.email}
+            </a>
+            <a
+              href={whatsappHref("Hello Adsons, I would like to discuss a business enquiry.")}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>WhatsApp</span>
+              {siteConfig.whatsappNumber}
+            </a>
+          </div>
         </div>
         <div className="footer-nav">
           <div>
