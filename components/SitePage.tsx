@@ -11,6 +11,7 @@ import {
   siteConfig,
   strengths,
   values,
+  whatsappHref,
 } from "@/lib/site-data";
 
 type Page = "home" | "trading" | "categories" | "retail" | "about" | "contact";
@@ -163,12 +164,28 @@ function Footer() {
   );
 }
 
+function WhatsAppChat() {
+  return (
+    <a
+      className="whatsapp-float"
+      href={whatsappHref("Hello Adsons, I would like to discuss a business enquiry.")}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat with Adsons on WhatsApp"
+      title="Chat with us on WhatsApp"
+    >
+      <img className="whatsapp-icon" src="/images/whatsapp-icon.png" alt="" aria-hidden="true" />
+    </a>
+  );
+}
+
 function Layout({ page, children }: { page: Page; children: React.ReactNode }) {
   return (
     <>
       <Header page={page} />
       <main>{children}</main>
       <Footer />
+      <WhatsAppChat />
     </>
   );
 }
@@ -532,8 +549,10 @@ function ContactPage() {
               <li>Broad requirement or opportunity</li>
             </ul>
             <div className="contact-status">
-              <strong>Contact details coming soon</strong>
-              <small>The official WhatsApp number, email and phone will be added after confirmation.</small>
+              <strong>Chat with us on WhatsApp</strong>
+              <a href={whatsappHref("Hello Adsons, I would like to discuss a business enquiry.")} target="_blank" rel="noreferrer">
+                +971 55 505 5198
+              </a>
             </div>
           </div>
         </div>
