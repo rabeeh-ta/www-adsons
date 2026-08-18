@@ -4,7 +4,7 @@ export const siteConfig = {
   establishedYear: "2001",
   signature: "Connecting Businesses. Building Lasting Partnerships.",
   whatsappNumber: "+971 55 505 5198",
-  email: "",
+  email: "contact@adsonsdubai.com",
   phone: "",
 };
 

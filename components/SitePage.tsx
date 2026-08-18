@@ -549,10 +549,16 @@ function ContactPage() {
               <li>Broad requirement or opportunity</li>
             </ul>
             <div className="contact-status">
-              <strong>Chat with us on WhatsApp</strong>
-              <a href={whatsappHref("Hello Adsons, I would like to discuss a business enquiry.")} target="_blank" rel="noreferrer">
-                +971 55 505 5198
-              </a>
+              <div>
+                <strong>Chat with us on WhatsApp</strong>
+                <a href={whatsappHref("Hello Adsons, I would like to discuss a business enquiry.")} target="_blank" rel="noreferrer">
+                  +971 55 505 5198
+                </a>
+              </div>
+              <div>
+                <strong>Email us</strong>
+                <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              </div>
             </div>
           </div>
         </div>

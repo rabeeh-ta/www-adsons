@@ -1176,9 +1176,16 @@ h3 {
 }
 
 .contact-status {
+  display: grid;
+  gap: 18px;
   padding: 22px 24px;
   border-left: 3px solid var(--red);
   background: var(--white);
+}
+
+.contact-status > div + div {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 
 .contact-status strong,
