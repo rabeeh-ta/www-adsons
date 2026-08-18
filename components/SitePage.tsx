@@ -2,7 +2,6 @@
 
 /* eslint-disable @next/next/no-img-element -- local VINEXT build serves optimized project assets directly */
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   brands,
@@ -95,9 +94,9 @@ function Header({ page }: { page: Page }) {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <div className="header-inner">
-        <Link className="wordmark" href="/" aria-label="Adsons home">
+        <a className="wordmark" href="/" aria-label="Adsons home">
           <BrandLockup />
-        </Link>
+        </a>
 
         <button
           className="menu-toggle"
@@ -112,20 +111,20 @@ function Header({ page }: { page: Page }) {
 
         <nav className="nav-links" aria-label="Primary navigation">
           {navigation.map((item) => (
-            <Link
+            <a
               key={item.href}
               className={pagePath[page] === item.href ? "active" : ""}
               href={item.href}
               onClick={() => setOpen(false)}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
-        <Link className="header-cta" href="/contact">
+        <a className="header-cta" href="/contact">
           Trade enquiry <Arrow />
-        </Link>
+        </a>
       </div>
     </header>
   );
@@ -136,19 +135,19 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-top">
         <div>
-          <Link className="wordmark wordmark-footer" href="/">
+          <a className="wordmark wordmark-footer" href="/">
             <BrandLockup footer />
-          </Link>
+          </a>
           <p>{siteConfig.signature}</p>
         </div>
         <div className="footer-nav">
           <div>
             <span>Explore</span>
-            {navigation.slice(1, 4).map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            {navigation.slice(1, 4).map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
           </div>
           <div>
             <span>Company</span>
-            {navigation.slice(4).map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            {navigation.slice(4).map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
           </div>
           <div>
             <span>Markets</span>
@@ -207,9 +206,9 @@ function CTA({ compact = false }: { compact?: boolean }) {
         <p className="eyebrow light">A conversation is the starting point</p>
         <h2>Build your next supply partnership with Adsons.</h2>
         <p>Tell us about your business, market and broad requirements. We’ll continue the conversation directly.</p>
-        <Link className="button button-light" href="/contact">
+        <a className="button button-light" href="/contact">
           Start a trade enquiry <Arrow />
-        </Link>
+        </a>
       </div>
     </section>
   );
@@ -277,8 +276,8 @@ function HomePage() {
           <h1>Connecting businesses.<br />Building lasting partnerships.</h1>
           <p className="hero-copy">Adsons specializes in the import, export and wholesale distribution of cellphone accessories across international markets.</p>
           <div className="hero-actions">
-            <Link className="button button-light" href="/contact">Start a trade enquiry <Arrow /></Link>
-            <Link className="text-link light" href="/about">Discover Adsons <Arrow /></Link>
+            <a className="button button-light" href="/contact">Start a trade enquiry <Arrow /></a>
+            <a className="text-link light" href="/about">Discover Adsons <Arrow /></a>
           </div>
         </div>
         <div className="hero-proof">
@@ -294,7 +293,7 @@ function HomePage() {
           <div>
             <h2>International reach.<br />A relationship-first approach.</h2>
             <p>For nearly 25 years, Adsons has earned the trust of wholesalers, distributors, retailers and importers through quality products, competitive pricing and dependable service.</p>
-            <Link className="text-link" href="/about">Read our story <Arrow /></Link>
+            <a className="text-link" href="/about">Read our story <Arrow /></a>
           </div>
         </div>
       </section>
@@ -303,16 +302,16 @@ function HomePage() {
         <div className="container">
           <SectionHeading eyebrow="Our business" title="Trusted sourcing, reliable supply and brands of our own." copy="Adsons connects manufacturers with businesses worldwide while developing proprietary brands for the changing cellphone accessories market." />
           <div className="business-grid">
-            <Link href="/trading" className="business-card business-trade">
+            <a href="/trading" className="business-card business-trade">
               <img src="/images/warehouse.png" alt="Consumer electronics accessories stored in an organized warehouse" />
               <div className="card-shade" />
               <div><span>01 / International Trading</span><h3>Import, export and wholesale distribution.</h3><p>Explore our approach <Arrow /></p></div>
-            </Link>
-            <Link href="/categories" className="business-card business-retail">
+            </a>
+            <a href="/categories" className="business-card business-retail">
               <img src="/images/technology.jpg" alt="Everyday cellphone and computer accessories" />
               <div className="card-shade" />
               <div><span>02 / Proprietary Brands</span><h3>ADSONS and DIGIT, built for global markets.</h3><p>Meet our brands <Arrow /></p></div>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -337,7 +336,7 @@ function HomePage() {
           <p className="eyebrow">Our purpose</p>
           <h2>Strong businesses begin with trust.</h2>
           <p>We connect businesses through trusted products, reliable supply solutions and enduring partnerships that create mutual growth and long-term success.</p>
-          <Link className="text-link" href="/retail">What guides us <Arrow /></Link>
+          <a className="text-link" href="/retail">What guides us <Arrow /></a>
         </div>
       </section>
       <CTA />
@@ -426,7 +425,7 @@ function BrandsPage() {
           <h2>Product and collection details will be added here later.</h2>
           <div>
             <p>For now, this page introduces the confirmed proprietary brands without publishing unverified product information.</p>
-            <Link className="text-link light" href="/contact">Discuss a business requirement <Arrow /></Link>
+            <a className="text-link light" href="/contact">Discuss a business requirement <Arrow /></a>
           </div>
         </div>
       </section>
@@ -470,7 +469,7 @@ function ValuesPage() {
           <p className="eyebrow">Our commitment</p>
           <h2>Professional in approach. Personal in commitment.</h2>
           <p>We create lasting value through trusted partnerships, reliable supply solutions and a customer-first way of working.</p>
-          <Link className="text-link" href="/about">Learn about Adsons <Arrow /></Link>
+          <a className="text-link" href="/about">Learn about Adsons <Arrow /></a>
         </div>
       </section>
       <CTA />
@@ -519,7 +518,7 @@ function AboutPage() {
           <p className="eyebrow">Brand philosophy</p>
           <h2>Built on trust. Built to last.</h2>
           <p>We believe the strongest businesses are built on trust, and the strongest partnerships are built to last.</p>
-          <Link className="text-link" href="/retail">Explore our values <Arrow /></Link>
+          <a className="text-link" href="/retail">Explore our values <Arrow /></a>
         </div>
       </section>
       <CTA />
@@ -572,7 +571,7 @@ function ContactPage() {
               ["Wholesale & Distribution", "Discuss market requirements, supply needs and long-term distribution opportunities."],
               ["Retailers & Importers", "Introduce your business and the broad cellphone accessory needs of your market."],
               ["Manufacturers & Partners", "Share a relevant sourcing, supply or strategic partnership opportunity."],
-            ].map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p><Link className="text-link" href="/trading">Our trading approach <Arrow /></Link></article>)}
+            ].map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p><a className="text-link" href="/trading">Our trading approach <Arrow /></a></article>)}
           </div>
         </div>
       </section>

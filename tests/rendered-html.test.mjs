@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -44,4 +45,13 @@ test("server-renders every public route", async () => {
     assert.equal(response.status, 200, pathname);
     assert.match(await response.text(), heading, pathname);
   }
+});
+
+test("internal navigation avoids Vinext's broken next/link client shim", async () => {
+  const source = await readFile(
+    new URL("../components/SitePage.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.doesNotMatch(source, /from ["']next\/link["']/);
 });
